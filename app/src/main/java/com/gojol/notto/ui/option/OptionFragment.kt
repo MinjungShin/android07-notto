@@ -52,12 +52,12 @@ class OptionFragment : Fragment() {
             OssLicensesMenuActivity.setActivityTitle(getString(R.string.option_license_title))
         })
         optionViewModel.contributorList.observe(viewLifecycleOwner, {
+            binding.tvOptionContributors.visibility = View.VISIBLE
             contributorAdapter.submitList(it)
         })
         networkState.observe(viewLifecycleOwner, {
             if (it) {
                 optionViewModel.updateGitContributors()
-                binding.tvOptionContributors.visibility = View.VISIBLE
             } else {
                 if (optionViewModel.contributorList.value.isNullOrEmpty())
                     binding.tvOptionContributors.visibility = View.GONE
